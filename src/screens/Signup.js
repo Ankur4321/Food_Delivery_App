@@ -6,9 +6,10 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(JSON.stringify({name: credentials.name, email: credentials.email, password:credentials.password, location:credentials.geolocation}))
     const response = await fetch("http://localhost:5000/api/createuser", {
       method: 'POST',
-      headers: {
+      headers: {                                 // check ones here also error may come due to headers
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
@@ -17,7 +18,7 @@ export default function Signup() {
     console.log(json);
 
     if (!json.success) {
-      alert("Enter valid credentials")
+     alert("Enter valid credentials")   // some error is here
     }
 
   }
